@@ -1,0 +1,22 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/admin/debug/route": "/api/admin/debug",
+  "/api/admin/logout/route": "/api/admin/logout",
+  "/robots.txt/route": "/robots.txt",
+  "/sitemap.xml/route": "/sitemap.xml",
+  "/favicon.ico/route": "/favicon.ico",
+  "/api/admin/verify/route": "/api/admin/verify",
+  "/api/admin/login/route": "/api/admin/login",
+  "/admin/dashboard/page": "/admin/dashboard",
+  "/admin/login/page": "/admin/login",
+  "/blog/[slug]/page": "/blog/[slug]",
+  "/page": "/",
+  "/security/page": "/security",
+  "/privacy/page": "/privacy",
+  "/terms/page": "/terms",
+  "/portfolio/[slug]/page": "/portfolio/[slug]",
+  "/about/page": "/about",
+  "/blog/page": "/blog",
+  "/portfolio/page": "/portfolio",
+  "/contact/page": "/contact"
+}
