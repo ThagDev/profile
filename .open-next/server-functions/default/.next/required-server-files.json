@@ -131,6 +131,12 @@
           "hostname": "cdn-media-0.freecodecamp.org",
           "port": "",
           "pathname": "/**"
+        },
+        {
+          "protocol": "https",
+          "hostname": "blog.hubspot.com",
+          "port": "",
+          "pathname": "/**"
         }
       ],
       "unoptimized": false

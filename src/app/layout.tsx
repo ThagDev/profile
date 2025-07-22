@@ -21,30 +21,40 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default: "ThagDev - Full Stack Developer",
-    template: "%s | ThagDev"
+    template: "%s | ThagDev",
   },
-  description: "Full-stack developer passionate about creating beautiful, functional, and user-friendly websites and applications. Specialized in React, Next.js, and modern web technologies.",
-  keywords: ["ThagDev", "Full Stack Developer", "React", "Next.js", "Web Development", "Portfolio"],
+  description:
+    "Full-stack developer passionate about creating beautiful, functional, and user-friendly websites and applications. Specialized in React, Next.js, and modern web technologies.",
+  keywords: [
+    "ThagDev",
+    "Full Stack Developer",
+    "React",
+    "Next.js",
+    "Web Development",
+    "Portfolio",
+  ],
   authors: [{ name: "ThagDev" }],
   creator: "ThagDev",
   publisher: "ThagDev",
-  metadataBase: new URL('https://your-domain.com'), // Replace with your actual domain
+  metadataBase: new URL("https://your-domain.com"), // Replace with your actual domain
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://your-domain.com', // Replace with your actual domain
-    title: 'ThagDev - Full Stack Developer Portfolio',
-    description: 'Full-stack developer passionate about creating beautiful, functional, and user-friendly websites and applications.',
-    siteName: 'ThagDev Portfolio',
+    type: "website",
+    locale: "en_US",
+    url: "https://your-domain.com", // Replace with your actual domain
+    title: "ThagDev - Full Stack Developer Portfolio",
+    description:
+      "Full-stack developer passionate about creating beautiful, functional, and user-friendly websites and applications.",
+    siteName: "ThagDev Portfolio",
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'ThagDev - Full Stack Developer Portfolio',
-    description: 'Full-stack developer passionate about creating beautiful, functional, and user-friendly websites and applications.',
-    creator: '@thagdev', // Replace with your Twitter handle
+    card: "summary_large_image",
+    title: "ThagDev - Full Stack Developer Portfolio",
+    description:
+      "Full-stack developer passionate about creating beautiful, functional, and user-friendly websites and applications.",
+    creator: "@thagdev", // Replace with your Twitter handle
   },
   robots: {
     index: true,
@@ -52,9 +62,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
 };
@@ -69,7 +79,11 @@ export default function RootLayout({
       <head>
         {/* Remove logo preload - Next.js Image will handle it optimally */}
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -79,9 +93,7 @@ export default function RootLayout({
             <ScrollManager />
             <div className="flex min-h-screen flex-col">
               <Header />
-              <main className="flex-1">
-                {children}
-              </main>
+              <main className="flex-1">{children}</main>
               <SiteFooter />
             </div>
           </ErrorBoundary>

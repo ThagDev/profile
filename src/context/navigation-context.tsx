@@ -63,7 +63,7 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const [history, setHistory] = useState<NavigationHistoryItem[]>(() => {
     // Initialize with sessionStorage data immediately
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       try {
         const savedHistory = sessionStorage.getItem("navigationHistory");
         return savedHistory ? JSON.parse(savedHistory) : [];
@@ -80,18 +80,21 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   const isFirstRender = useRef(true);
 
   // Optimized save function with debouncing
-  const saveHistoryToStorage = useCallback((historyToSave: NavigationHistoryItem[]) => {
-    if (typeof window === 'undefined') return;
-    
-    try {
-      sessionStorage.setItem(
-        "navigationHistory",
-        JSON.stringify(historyToSave)
-      );
-    } catch (error) {
-      console.error("Failed to save navigation history:", error);
-    }
-  }, []);
+  const saveHistoryToStorage = useCallback(
+    (historyToSave: NavigationHistoryItem[]) => {
+      if (typeof window === "undefined") return;
+
+      try {
+        sessionStorage.setItem(
+          "navigationHistory",
+          JSON.stringify(historyToSave)
+        );
+      } catch (error) {
+        console.error("Failed to save navigation history:", error);
+      }
+    },
+    []
+  );
 
   // Get the document title with better caching
   const getDocumentTitle = useCallback((): string => {
@@ -102,65 +105,68 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
   }, [pathname]);
 
   // Optimized update history function
-  const updateHistory = useCallback((newPath: string) => {
-    // Skip if it's the same path as previous
-    if (prevPathnameRef.current === newPath) return;
-    
-    setHistory((prevHistory) => {
-      // Don't add the same path twice in a row
-      if (
-        prevHistory.length > 0 &&
-        prevHistory[prevHistory.length - 1].path === newPath
-      ) {
-        return prevHistory;
-      }
+  const updateHistory = useCallback(
+    (newPath: string) => {
+      // Skip if it's the same path as previous
+      if (prevPathnameRef.current === newPath) return;
 
-      // Check if this path already exists in history
-      const existingItemIndex = prevHistory.findIndex(
-        (item) => item.path === newPath
-      );
+      setHistory((prevHistory) => {
+        // Don't add the same path twice in a row
+        if (
+          prevHistory.length > 0 &&
+          prevHistory[prevHistory.length - 1].path === newPath
+        ) {
+          return prevHistory;
+        }
 
-      // Create new history array
-      let newHistory: NavigationHistoryItem[];
+        // Check if this path already exists in history
+        const existingItemIndex = prevHistory.findIndex(
+          (item) => item.path === newPath
+        );
 
-      if (existingItemIndex >= 0) {
-        // If path exists, move it to the end with updated timestamp
-        const existingItem = prevHistory[existingItemIndex];
-        newHistory = [
-          ...prevHistory.slice(0, existingItemIndex),
-          ...prevHistory.slice(existingItemIndex + 1),
-          {
-            ...existingItem,
-            timestamp: Date.now(),
-          },
-        ];
-      } else {
-        // If path doesn't exist, add it to the end
-        newHistory = [
-          ...prevHistory,
-          {
-            path: newPath,
-            title: getDocumentTitle(),
-            timestamp: Date.now(),
-            breadcrumb: { parent: "/" },
-          },
-        ];
-      }
+        // Create new history array
+        let newHistory: NavigationHistoryItem[];
 
-      // Limit history length
-      if (newHistory.length > MAX_HISTORY_LENGTH) {
-        newHistory.shift();
-      }
+        if (existingItemIndex >= 0) {
+          // If path exists, move it to the end with updated timestamp
+          const existingItem = prevHistory[existingItemIndex];
+          newHistory = [
+            ...prevHistory.slice(0, existingItemIndex),
+            ...prevHistory.slice(existingItemIndex + 1),
+            {
+              ...existingItem,
+              timestamp: Date.now(),
+            },
+          ];
+        } else {
+          // If path doesn't exist, add it to the end
+          newHistory = [
+            ...prevHistory,
+            {
+              path: newPath,
+              title: getDocumentTitle(),
+              timestamp: Date.now(),
+              breadcrumb: { parent: "/" },
+            },
+          ];
+        }
 
-      // Save to sessionStorage
-      saveHistoryToStorage(newHistory);
-      
-      // Update the ref
-      prevPathnameRef.current = newPath;
+        // Limit history length
+        if (newHistory.length > MAX_HISTORY_LENGTH) {
+          newHistory.shift();
+        }
 
-      return newHistory;
-    });
-  }, [getDocumentTitle, saveHistoryToStorage]);
+        // Save to sessionStorage
+        saveHistoryToStorage(newHistory);
+
+        // Update the ref
+        prevPathnameRef.current = newPath;
+
+        return newHistory;
+      });
+    },
+    [getDocumentTitle, saveHistoryToStorage]
+  );
 
   // Handle pathname changes without useEffect - using useMemo for synchronous update
   useMemo(() => {
@@ -171,7 +177,7 @@ export function NavigationProvider({ children }: { children: ReactNode }) {
       }
       return;
     }
-    
+
     if (pathname && pathname !== prevPathnameRef.current) {
       updateHistory(pathname);
     }

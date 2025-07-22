@@ -30,7 +30,7 @@ export function IntegratedNavigation({
 
   try {
     // Use provided back destination or default to home
-    const backPath = backDestination;    // Determine the label - use provided label or default
+    const backPath = backDestination; // Determine the label - use provided label or default
     const backButtonLabel = backLabel;
 
     // Breadcrumbs are disabled since we removed navigation context
@@ -50,7 +50,9 @@ export function IntegratedNavigation({
       <div className={cn("flex flex-col gap-2 my-4", className)}>
         {/* Back button */}
         {showBackButton && (
-          <div className="flex items-center">            {variant === "elegant" ? (
+          <div className="flex items-center">
+            {" "}
+            {variant === "elegant" ? (
               <Link href={backPath} className={backVariants[variant]}>
                 <m.div
                   className="relative flex items-center"

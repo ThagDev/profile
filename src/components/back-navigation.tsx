@@ -25,7 +25,7 @@ export function BackNavigation({
 }: BackNavigationProps) {
   const [isHovered, setIsHovered] = useState(false);
   const navigation = useNavigation();
-//   const pathname = usePathname();
+  //   const pathname = usePathname();
 
   try {
     // Safely get previous path
@@ -67,7 +67,9 @@ export function BackNavigation({
     };
 
     return (
-      <div className={cn("my-4", className)}>        {variant === "elegant" ? (
+      <div className={cn("my-4", className)}>
+        {" "}
+        {variant === "elegant" ? (
           <Link href={backDestination} className={variants[variant]}>
             <m.div
               className="relative flex items-center"

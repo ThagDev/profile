@@ -42,8 +42,8 @@ export function CVPreviewDialog({
   return (
     <Dialog open={isOpen} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>
-        <Button variant={buttonVariant} className={triggerClassName}>
-          <Eye className="mr-2 h-4 w-4" />
+        <Button variant={buttonVariant} className={triggerClassName} size="lg">
+          <Eye className="mr-2 " />
           View CV
         </Button>
       </DialogTrigger>

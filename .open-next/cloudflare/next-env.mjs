@@ -1,3 +1,3 @@
-export const production = {"NEXTJS_ENV":"development","ADMIN_USERNAME":"thangdev_admin_2025","ADMIN_PASSWORD":"ThangDev@SecureAdmin#2025!","ADMIN_SECRET_KEY":"ultra_secret_thang_admin_key_xyz789","JWT_SECRET":"thangdev_jwt_secret_key_ultra_secure_2025"};
-export const development = {"NEXTJS_ENV":"development","ADMIN_USERNAME":"thangdev_admin_2025","ADMIN_PASSWORD":"ThangDev@SecureAdmin#2025!","ADMIN_SECRET_KEY":"ultra_secret_thang_admin_key_xyz789","JWT_SECRET":"thangdev_jwt_secret_key_ultra_secure_2025"};
-export const test = {};
+export const production = {"URI_MONGODB":"mongodb://localhost:27017/portfolio","NEXTJS_ENV":"development","ADMIN_USERNAME":"thangdev_admin_2025","ADMIN_PASSWORD":"ThangDev@SecureAdmin#2025!","ADMIN_SECRET_KEY":"ultra_secret_thang_admin_key_xyz789","JWT_SECRET":"thangdev_jwt_secret_key_ultra_secure_2025"};
+export const development = {"URI_MONGODB":"mongodb://localhost:27017/portfolio","NEXTJS_ENV":"development","ADMIN_USERNAME":"thangdev_admin_2025","ADMIN_PASSWORD":"ThangDev@SecureAdmin#2025!","ADMIN_SECRET_KEY":"ultra_secret_thang_admin_key_xyz789","JWT_SECRET":"thangdev_jwt_secret_key_ultra_secure_2025"};
+export const test = {"URI_MONGODB":"mongodb://localhost:27017/portfolio"};

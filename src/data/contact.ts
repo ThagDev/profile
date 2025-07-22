@@ -16,49 +16,50 @@ export const contactInformation: ContactInfo[] = [
     icon: "Mail",
     label: "Email",
     value: "hoquocthang1507@gmail.com",
-    href: "mailto:hoquocthang1507@gmail.com"
+    href: "mailto:hoquocthang1507@gmail.com",
   },
   {
     icon: "Phone",
-    label: "Phone", 
+    label: "Phone",
     value: "+84 (555) 123-4567",
-    href: "tel:+84555123456"
+    href: "tel:+84555123456",
   },
   {
     icon: "MapPin",
     label: "Location",
-    value: "HCM City, Viet Nam"
-  }
+    value: "HCM City, Viet Nam",
+  },
 ];
 
 export const socialLinks: SocialLink[] = [
   {
     name: "GitHub",
     url: "https://github.com/yourusername",
-    icon: "GitHub"
+    icon: "GitHub",
   },
   {
-    name: "LinkedIn", 
+    name: "LinkedIn",
     url: "https://linkedin.com/in/yourusername",
-    icon: "LinkedIn"
+    icon: "LinkedIn",
   },
   {
     name: "Twitter",
-    url: "https://twitter.com/yourusername", 
-    icon: "Twitter"
+    url: "https://twitter.com/yourusername",
+    icon: "Twitter",
   },
   {
     name: "Instagram",
     url: "https://instagram.com/yourusername",
-    icon: "Instagram"
-  }
+    icon: "Instagram",
+  },
 ];
 
 export const availabilityInfo = {
   status: "Available for new projects",
-  description: "I'm currently available for freelance work and new opportunities. Feel free to reach out if you'd like to discuss a project or collaboration.",
+  description:
+    "I'm currently available for freelance work and new opportunities. Feel free to reach out if you'd like to discuss a project or collaboration.",
   responseTime: "24-48 hours",
-  preferredContact: "Email"
+  preferredContact: "Email",
 };
 
 export const contactFormFields = [
@@ -67,28 +68,28 @@ export const contactFormFields = [
     label: "Name",
     type: "text",
     placeholder: "Your full name",
-    required: true
+    required: true,
   },
   {
-    name: "email", 
+    name: "email",
     label: "Email",
     type: "email",
     placeholder: "your@email.com",
-    required: true
+    required: true,
   },
   {
     name: "subject",
-    label: "Subject", 
+    label: "Subject",
     type: "text",
     placeholder: "What's this about?",
-    required: true
+    required: true,
   },
   {
     name: "message",
     label: "Message",
-    type: "textarea",  
+    type: "textarea",
     placeholder: "Tell me about your project or question...",
     required: true,
-    rows: 5
-  }
+    rows: 5,
+  },
 ];

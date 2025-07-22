@@ -12,18 +12,18 @@ import {
   ScaleOnHover,
 } from "@/components/framer-animations";
 import { useInView } from "framer-motion";
-import { useRef, memo } from "react";
+import { useRef, memo, useMemo } from "react";
 import { HomeBlogPreview } from "@/components/home-blog-preview";
 import { ViewCounter } from "@/components/view-counter";
 import { CVPreviewDialog } from "@/components/cv-preview-dialog";
 import { projects, type Project } from "@/data/projects";
-
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 // Memoized project item
 const ProjectItem = memo(({ project }: { project: Project }) => (
   <StaggerItem>
     <ScaleOnHover>
       <div className="group relative overflow-hidden rounded-lg border bg-background">
-        <div className="aspect-video overflow-hidden">
+        <div className="aspect-video overflow-hidden bg-muted">
           <Image
             src={project.image}
             width={500}
@@ -33,6 +33,12 @@ const ProjectItem = memo(({ project }: { project: Project }) => (
             loading="lazy"
             placeholder="blur"
             blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+            onError={(e) => {
+              // Fallback to a gradient background on error
+              e.currentTarget.style.display = "none";
+              e.currentTarget.parentElement!.style.background =
+                "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+            }}
           />
         </div>
         <div className="p-4">
@@ -71,62 +77,67 @@ export default function HomePage() {
   const blogInView = useInView(blogRef, { once: true, amount: 0.3 });
   const contactInView = useInView(contactRef, { once: true, amount: 0.3 });
 
+  // Memoize featured projects to prevent unnecessary recalculation
+  const featuredProjects = useMemo(() => projects.slice(0, 3), []);
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative">
-        <div className="container mx-auto px-4 py-20 lg:py-32">
-          <div className="mx-auto max-w-6xl">
-            {" "}
-            <div className="text-center max-w-4xl mx-auto">
-              <div className="space-y-8">
-                <FadeIn>
-                  <div className="space-y-4">
-                    <h1 className="text-4xl font-bold  sm:text-5xl xl:text-6xl">
-                      <span className="text-primary font-bold">
-                        Hi, I&apos;m <span className="gradientSpan">Thang Dev</span>
-                      </span>
-                    </h1>
-                    <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
-                      A passionate full-stack developer who loves creating
-                      beautiful, functional, and user-friendly web applications.
-                    </p>
-                  </div>
-                </FadeIn>
-
-                <SlideIn direction="up" delay={0.2}>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button asChild size="lg">
-                      <Link href="/portfolio">
-                        View My Work
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
-                    <CVPreviewDialog
-                      triggerClassName="w-full sm:w-auto"
-                      buttonVariant="outline"
-                    />
-                  </div>
-                </SlideIn>
-
-                <SlideIn direction="up" delay={0.4}>
-                  <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-2">
-                      <div className="h-2 w-2 rounded-full bg-green-500"></div>
-                      <span>Available for work</span>
+      <BackgroundBeamsWithCollision>
+        <section className="relative pb-[20px]">
+          <div className="container mx-auto px-4 py-20 lg:py-32">
+            <div className="mx-auto max-w-6xl">
+              <div className="text-center max-w-4xl mx-auto">
+                <div className="space-y-8">
+                  <FadeIn>
+                    <div className="space-y-4">
+                      <h1 className="text-4xl font-bold  sm:text-5xl xl:text-6xl">
+                        <span className="text-primary font-bold">
+                          Hi, I&apos;m
+                          <span className="gradientSpan">Thang Dev</span>
+                        </span>
+                      </h1>
+                      <p className="mx-auto max-w-2xl text-xl text-muted-foreground">
+                        A passionate full-stack developer who loves creating
+                        beautiful, functional, and user-friendly web
+                        applications.
+                      </p>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <FileDown className="h-4 w-4" />
-                      <span>Open to opportunities</span>
+                  </FadeIn>
+
+                  <SlideIn direction="up" delay={0.2}>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                      <Button asChild size="lg">
+                        <Link href="/project">
+                          View My Work
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
+                      </Button>
+                      <CVPreviewDialog
+                        triggerClassName="w-full sm:w-auto"
+                        buttonVariant="outline"
+                      />
                     </div>
-                  </div>
-                </SlideIn>
+                  </SlideIn>
+
+                  <SlideIn direction="up" delay={0.4}>
+                    <div className="flex items-center justify-center gap-6 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        <div className="h-2 w-2 rounded-full bg-green-500"></div>
+                        <span>Available for work</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <FileDown className="h-4 w-4" />
+                        <span>Open to opportunities</span>
+                      </div>
+                    </div>
+                  </SlideIn>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
+        </section>
+      </BackgroundBeamsWithCollision>
       {/* About Section */}
       <section ref={aboutRef} className="py-20 bg-muted/30">
         <div className="container mx-auto px-4">
@@ -197,7 +208,7 @@ export default function HomePage() {
 
                 <StaggerContainer>
                   <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {projects.slice(0, 3).map((project) => (
+                    {featuredProjects.map((project) => (
                       <ProjectItem key={project.id} project={project} />
                     ))}
                   </div>

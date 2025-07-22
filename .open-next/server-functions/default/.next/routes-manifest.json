@@ -52,12 +52,12 @@
       "namedRegex": "^/blog/(?<nxtPslug>[^/]+?)(?:/)?$"
     },
     {
-      "page": "/portfolio/[slug]",
-      "regex": "^/portfolio/([^/]+?)(?:/)?$",
+      "page": "/project/[slug]",
+      "regex": "^/project/([^/]+?)(?:/)?$",
       "routeKeys": {
         "nxtPslug": "nxtPslug"
       },
-      "namedRegex": "^/portfolio/(?<nxtPslug>[^/]+?)(?:/)?$"
+      "namedRegex": "^/project/(?<nxtPslug>[^/]+?)(?:/)?$"
     }
   ],
   "staticRoutes": [
@@ -110,16 +110,16 @@
       "namedRegex": "^/favicon\\.ico(?:/)?$"
     },
     {
-      "page": "/portfolio",
-      "regex": "^/portfolio(?:/)?$",
-      "routeKeys": {},
-      "namedRegex": "^/portfolio(?:/)?$"
-    },
-    {
       "page": "/privacy",
       "regex": "^/privacy(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/privacy(?:/)?$"
+    },
+    {
+      "page": "/project",
+      "regex": "^/project(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/project(?:/)?$"
     },
     {
       "page": "/robots.txt",

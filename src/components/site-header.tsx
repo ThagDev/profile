@@ -8,8 +8,16 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { ScaleOnHover } from "@/components/framer-animations";
 import { cn } from "@/lib/utils";
 import OptimizedLogo from "@/components/optimized-logo";
-import { m, AnimatePresence } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { Menu, X } from "lucide-react";
+
+// Navigation links data - move outside component for better performance
+const navLinks = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/project", label: "Project" },
+  { href: "/blog", label: "Blog" },
+];
 
 const Header = memo(() => {
   const pathname = usePathname();
@@ -22,36 +30,31 @@ const Header = memo(() => {
     return pathname?.startsWith(href);
   };
 
-  // Navigation links data
-  const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/portfolio", label: "Portfolio" },
-    { href: "/blog", label: "Blog" },
-    { href: "/contact", label: "Contact" },
-  ];
-
-  // Reusable NavLink component
-  const NavLink = ({
-    href,
-    label,
-    onClick,
-  }: {
-    href: string;
-    label: string;
-    onClick?: () => void;
-  }) => (
-    <Link
-      href={href}
-      onClick={onClick}
-      className={cn(
-        "font-medium transition-colors hover:text-primary ",
-        isActive(href) ? "text-primary gradientSpan" : "text-muted-foreground"
-      )}
-    >
-      {label}
-    </Link>
+  // Memoized NavLink component
+  const NavLink = memo(
+    ({
+      href,
+      label,
+      onClick,
+    }: {
+      href: string;
+      label: string;
+      onClick?: () => void;
+    }) => (
+      <Link
+        href={href}
+        onClick={onClick}
+        className={cn(
+          "font-medium transition-colors hover:text-primary text-base",
+          isActive(href) ? "text-primary gradientSpan" : "text-muted-foreground"
+        )}
+      >
+        {label}
+      </Link>
+    )
   );
+
+  NavLink.displayName = "NavLink";
 
   return (
     <>
@@ -75,7 +78,7 @@ const Header = memo(() => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex gap-6">
+          <nav className="hidden md:flex gap-10 ml-20">
             {navLinks.map(({ href, label }) => (
               <NavLink key={href} href={href} label={label} />
             ))}
@@ -86,7 +89,7 @@ const Header = memo(() => {
             <ThemeToggle />
             <ScaleOnHover>
               <Button asChild>
-                <Link href="/contact">Get in Touch</Link>
+                <Link href="/contact">Contact</Link>
               </Button>
             </ScaleOnHover>
           </div>
@@ -130,16 +133,16 @@ const Header = memo(() => {
                   />
                 </div>
               ))}
-            </div>
-            <div className="pt-2 border-t px-4 ">
-              <Button asChild className="w-full">
-                <Link
-                  href="/contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Get in Touch
-                </Link>
-              </Button>
+              <div className="pt-2 border-t">
+                <Button asChild className="w-full">
+                  <Link
+                    href="/contact"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Get in Touch
+                  </Link>
+                </Button>
+              </div>
             </div>
           </m.div>
         )}

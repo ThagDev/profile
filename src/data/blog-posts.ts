@@ -14,7 +14,8 @@ export const blogPosts: BlogPost[] = [
   {
     id: 1,
     title: "Getting Started with Next.js",
-    excerpt: "Learn how to build modern web applications with Next.js and React.",
+    excerpt:
+      "Learn how to build modern web applications with Next.js and React.",
     date: "April 15, 2023",
     image: "https://nextjs.org/api/learn-og?title=Getting%20Started&chapter=1",
     category: "Development",
@@ -24,9 +25,11 @@ export const blogPosts: BlogPost[] = [
   {
     id: 2,
     title: "The Power of Tailwind CSS",
-    excerpt: "Discover how Tailwind CSS can streamline your styling workflow and boost productivity.",
+    excerpt:
+      "Discover how Tailwind CSS can streamline your styling workflow and boost productivity.",
     date: "March 28, 2023",
-    image: "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ftbi5298kz9usxb5lrtmq.png",
+    image:
+      "https://media2.dev.to/dynamic/image/width=1000,height=420,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ftbi5298kz9usxb5lrtmq.png",
     category: "Design",
     slug: "power-of-tailwind-css",
     author: "Jane Smith",
@@ -34,9 +37,11 @@ export const blogPosts: BlogPost[] = [
   {
     id: 3,
     title: "Building Accessible Web Applications",
-    excerpt: "Best practices for creating web applications that everyone can use, regardless of ability.",
+    excerpt:
+      "Best practices for creating web applications that everyone can use, regardless of ability.",
     date: "March 10, 2023",
-    image: "https://cdn-media-0.freecodecamp.org/size/w2000/2022/12/ben-kolde-bs2Ba7t69mM-unsplash-1.jpg",
+    image:
+      "https://cdn-media-0.freecodecamp.org/size/w2000/2022/12/ben-kolde-bs2Ba7t69mM-unsplash-1.jpg",
     category: "Accessibility",
     slug: "building-accessible-web-applications",
     author: "Alex Johnson",
@@ -44,9 +49,11 @@ export const blogPosts: BlogPost[] = [
   {
     id: 4,
     title: "State Management in React",
-    excerpt: "Comparing different state management solutions for React applications.",
+    excerpt:
+      "Comparing different state management solutions for React applications.",
     date: "February 22, 2023",
-    image: "/placeholder.svg?height=300&width=500&text=React+State",
+    image:
+      "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=500&h=300&fit=crop",
     category: "Development",
     slug: "state-management-in-react",
     author: "Mike Wilson",
@@ -54,9 +61,11 @@ export const blogPosts: BlogPost[] = [
   {
     id: 5,
     title: "Optimizing Website Performance",
-    excerpt: "Techniques to improve loading times and overall performance of your websites.",
+    excerpt:
+      "Techniques to improve loading times and overall performance of your websites.",
     date: "February 5, 2023",
-    image: "/placeholder.svg?height=300&width=500&text=Performance",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop",
     category: "Performance",
     slug: "optimizing-website-performance",
     author: "Sarah Davis",
@@ -64,9 +73,11 @@ export const blogPosts: BlogPost[] = [
   {
     id: 6,
     title: "The Future of Web Development",
-    excerpt: "Exploring emerging technologies and trends that will shape the future of web development.",
+    excerpt:
+      "Exploring emerging technologies and trends that will shape the future of web development.",
     date: "January 18, 2023",
-    image: "/placeholder.svg?height=300&width=500&text=Future+Web",
+    image:
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500&h=300&fit=crop",
     category: "Trends",
     slug: "future-of-web-development",
     author: "Chris Brown",
@@ -84,7 +95,7 @@ export const blogCategories = [
 
 // Helper functions để tìm blog post theo slug
 export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
-  return blogPosts.find(post => post.slug === slug);
+  return blogPosts.find((post) => post.slug === slug);
 };
 
 export const getBlogIdFromSlug = (slug: string): number => {
@@ -113,7 +124,7 @@ export const getBlogContentFromSlug = (slug: string): string => {
   const post = getBlogPostBySlug(slug);
   const title = post?.title || "Blog Post";
   const excerpt = post?.excerpt || "This is a sample blog post excerpt.";
-  
+
   return `Welcome to this comprehensive guide on ${title}. In this article, we'll explore the key concepts, best practices, and practical examples to help you master this topic.
 
 Introduction

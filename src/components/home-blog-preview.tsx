@@ -12,19 +12,22 @@ import {
 } from "@/components/ui/card";
 import { ViewCounter } from "@/components/view-counter";
 import { ExpandableContent } from "@/components/expandable-content";
-import { memo } from "react";
+import { memo, useMemo } from "react";
 import { blogPosts, getBlogContentFromSlug } from "@/data/blog-posts";
 
 // Memoized BlogPost component to prevent unnecessary re-renders
-const BlogPost = memo(({ post }: { post: typeof blogPosts[0] }) => {
-  // Get full content for the post
-  const fullContent = getBlogContentFromSlug(post.slug);
-  
+const BlogPost = memo(({ post }: { post: (typeof blogPosts)[0] }) => {
+  // Memoize full content to avoid recalculation
+  const fullContent = useMemo(
+    () => getBlogContentFromSlug(post.slug),
+    [post.slug]
+  );
+
   return (
     <Card className="flex flex-col h-fit">
-      <div className="aspect-video overflow-hidden">
+      <div className="aspect-video overflow-hidden bg-muted">
         <Image
-          src={post.image || "/placeholder.svg"}
+          src={post.image}
           alt={post.title}
           width={500}
           height={300}
@@ -32,6 +35,12 @@ const BlogPost = memo(({ post }: { post: typeof blogPosts[0] }) => {
           loading="lazy"
           placeholder="blur"
           blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+          onError={(e) => {
+            // Fallback to a solid color background on error
+            e.currentTarget.style.display = "none";
+            e.currentTarget.parentElement!.style.background =
+              "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+          }}
         />
       </div>
       <CardHeader className="flex-grow">
@@ -44,7 +53,9 @@ const BlogPost = memo(({ post }: { post: typeof blogPosts[0] }) => {
             </span>
           </div>
         </div>
-        <CardTitle className="line-clamp-2 min-h-[3rem]">{post.title}</CardTitle>
+        <CardTitle className="line-clamp-2 min-h-[3rem]">
+          {post.title}
+        </CardTitle>
         <CardDescription className="flex-grow">
           <ExpandableContent
             excerpt={post.excerpt}
@@ -66,9 +77,9 @@ const BlogPost = memo(({ post }: { post: typeof blogPosts[0] }) => {
 BlogPost.displayName = "BlogPost";
 
 export function HomeBlogPreview() {
-  // Use first 3 posts from shared data source
-  const featuredPosts = blogPosts.slice(0, 3);
-  
+  // Memoize featured posts to prevent unnecessary recalculation
+  const featuredPosts = useMemo(() => blogPosts.slice(0, 3), []);
+
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 grid-auto-rows-max items-start">
       {featuredPosts.map((post) => (

@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React from "react";
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -12,7 +12,10 @@ interface ErrorBoundaryProps {
   fallback?: React.ComponentType<{ error: Error; reset: () => void }>;
 }
 
-class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
@@ -24,10 +27,10 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
 
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     // Log error to console in development
-    if (process.env.NODE_ENV === 'development') {
-      console.error('Error Boundary caught an error:', error, errorInfo);
+    if (process.env.NODE_ENV === "development") {
+      console.error("Error Boundary caught an error:", error, errorInfo);
     }
-    
+
     // In production, you might want to log to an error reporting service
     // Example: logErrorToService(error, errorInfo);
   }
@@ -35,11 +38,11 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
   render() {
     if (this.state.hasError) {
       const { fallback: Fallback } = this.props;
-      
+
       if (Fallback) {
         return (
-          <Fallback 
-            error={this.state.error!} 
+          <Fallback
+            error={this.state.error!}
             reset={() => this.setState({ hasError: false, error: undefined })}
           />
         );
@@ -51,10 +54,12 @@ class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundarySta
           <div className="text-center">
             <h2 className="text-2xl font-bold mb-4">Something went wrong!</h2>
             <p className="text-muted-foreground mb-4">
-              {this.state.error?.message || 'An unexpected error occurred'}
+              {this.state.error?.message || "An unexpected error occurred"}
             </p>
-            <button 
-              onClick={() => this.setState({ hasError: false, error: undefined })}
+            <button
+              onClick={() =>
+                this.setState({ hasError: false, error: undefined })
+              }
               className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/90"
             >
               Try again

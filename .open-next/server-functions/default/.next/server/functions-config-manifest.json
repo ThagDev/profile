@@ -1,7 +1,7 @@
 {
   "version": 1,
   "functions": {
-    "/api/admin/verify": {},
-    "/api/admin/login": {}
+    "/api/admin/login": {},
+    "/api/admin/verify": {}
   }
 }

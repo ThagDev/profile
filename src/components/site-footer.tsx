@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "next/link";
 
 export function SiteFooter() {
   return (
@@ -11,30 +11,50 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
           <div className="flex gap-4">
-            <Link target="_blank" href="https://x.com/hoquocthang1507" className="text-muted-foreground hover:text-foreground">
+            <Link
+              target="_blank"
+              href="https://x.com/hoquocthang1507"
+              className="text-muted-foreground hover:text-foreground"
+            >
               Twitter
             </Link>
-            <Link target="_blank" href="https://github.com/ThagDev" className="text-muted-foreground hover:text-foreground">
+            <Link
+              target="_blank"
+              href="https://github.com/ThagDev"
+              className="text-muted-foreground hover:text-foreground"
+            >
               GitHub
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">
+            <Link
+              href="#"
+              className="text-muted-foreground hover:text-foreground"
+            >
               LinkedIn
             </Link>
           </div>
           <div className="h-4 w-px bg-muted-foreground/20 hidden md:block" />
           <div className="flex gap-4">
-            <Link href="/terms" className="text-sm text-muted-foreground hover:text-foreground">
+            <Link
+              href="/terms"
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
               Terms & Conditions
             </Link>
-            <Link href="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
+            <Link
+              href="/privacy"
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
               Privacy Policy
             </Link>
-            <Link href="/security" className="text-sm text-muted-foreground hover:text-foreground">
+            <Link
+              href="/security"
+              className="text-sm text-muted-foreground hover:text-foreground"
+            >
               Security Policy
             </Link>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

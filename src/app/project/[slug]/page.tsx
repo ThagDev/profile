@@ -17,14 +17,20 @@ export default function ProjectDetailPage({
 }) {
   const { slug } = use(params);
   const projectData = getProjectBySlug(slug);
-  
+
   // Nếu không tìm thấy project, dùng default
   const project = projectData || {
     id: 1,
     title: "Project",
-    image: `/placeholder.svg?height=600&width=1200&text=${slug.replace(/-/g, "+")}`,
+    image: `/placeholder.svg?height=600&width=1200&text=${slug.replace(
+      /-/g,
+      "+"
+    )}`,
     tags: ["Next.js", "React", "Tailwind CSS"],
-    description: `Dự án ${slug.replace(/-/g, " ")} sử dụng các công nghệ hiện đại.`,
+    description: `Dự án ${slug.replace(
+      /-/g,
+      " "
+    )} sử dụng các công nghệ hiện đại.`,
   };
 
   usePageTitle(project.title);
@@ -34,17 +40,19 @@ export default function ProjectDetailPage({
       <div className="container mx-auto px-4 py-12 flex-1">
         <div className="mx-auto max-w-5xl space-y-8">
           <IntegratedNavigation variant="elegant" />
-          
           <div className="space-y-4">
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
               <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl">
                 {project.title}
               </h1>
               <ViewCounter id={project.id} type="project" increment={true} />
-            </div>            <p className="text-xl text-muted-foreground">
-              {project.description || `Dự án ${project.title.toLowerCase()} sử dụng các công nghệ hiện đại.`}
+            </div>{" "}
+            <p className="text-xl text-muted-foreground">
+              {project.description ||
+                `Dự án ${project.title.toLowerCase()} sử dụng các công nghệ hiện đại.`}
             </p>
-          </div>          <div className="overflow-hidden rounded-lg border">
+          </div>{" "}
+          <div className="overflow-hidden rounded-lg border">
             <Image
               src={project.image}
               alt={project.title}
@@ -53,7 +61,6 @@ export default function ProjectDetailPage({
               className="w-full object-cover"
             />
           </div>
-
           <div className="flex flex-wrap gap-2">
             {project.tags.map((tag) => (
               <span
@@ -64,15 +71,14 @@ export default function ProjectDetailPage({
               </span>
             ))}
           </div>
-
           <div className="prose prose-gray dark:prose-invert max-w-none">
             <h2>Mô tả dự án</h2>
             <p>
               Đây là dự án {project.title} được xây dựng với các công nghệ{" "}
-              {project.tags.join(", ")}. Dự án tập trung vào việc tạo ra một
-              ứng dụng hiện đại, responsive và thân thiện với người dùng.
+              {project.tags.join(", ")}. Dự án tập trung vào việc tạo ra một ứng
+              dụng hiện đại, responsive và thân thiện với người dùng.
             </p>
-            
+
             <h2>Tính năng chính</h2>
             <ul>
               <li>Thiết kế responsive hoạt động trên mọi thiết bị</li>
@@ -88,15 +94,22 @@ export default function ProjectDetailPage({
               ))}
             </ul>
           </div>
-
           <div className="flex flex-col sm:flex-row gap-4">
             <Button asChild>
-              <a href={`https://example.com/${slug}`} target="_blank" rel="noopener noreferrer">
+              <a
+                href={`https://example.com/${slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Xem Demo
               </a>
             </Button>
             <Button variant="outline" asChild>
-              <a href={`https://github.com/johndoe/${slug}`} target="_blank" rel="noopener noreferrer">
+              <a
+                href={`https://github.com/johndoe/${slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Xem Source Code
               </a>
             </Button>
